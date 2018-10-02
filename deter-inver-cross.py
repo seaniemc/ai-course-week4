@@ -1,3 +1,4 @@
+
 def calDeterminant(mat):
     deter = 0
     try: 
@@ -12,9 +13,41 @@ def calDeterminant(mat):
     finally:
         return deter
 
+def inverseOfMatrix(mat):
+    det = calDeterminant(mat)
+    fracDet = 1/det
+
+    tmp = mat[0][0]
+    mat[0][0] = mat[1][1]
+    mat[1][1] = tmp
+
+    mat[0][1] = checkForNeg(mat[0][1])
+    mat[1][0] = checkForNeg(mat[1][0])
+    
+    inverseMat = [[0.0 for y in range(len(mat[0]))]for x in range(len(mat[1]))]
+    
+    for i in range(len(mat[0])):
+        for j in range(len(mat[1])):
+            inverseMat[i][j] += fracDet * mat[i][j]
+
+    return inverseMat
+
+
+def checkForNeg(x):
+    newNum = 0
+    if x > 0: 
+        newNum = -x
+    elif x < 0:   
+        newNum = abs(x)
+    return newNum
 
 if __name__ == '__main__':
     mat =[[3, 5], [-1, 1]]
+    matInverse =[[2, 4], [1, 3]]
     mat2 =[[3, 5, 3], [-1, 1, 4]]
-    print(calDeterminant(mat))
-    print(calDeterminant(mat2))
+    # print(calDeterminant(mat))
+    # print(calDeterminant(mat2))
+    # ans = 1/8
+    # #frac = ans * 4 
+    # print(ans)
+    print(inverseOfMatrix(matInverse))
