@@ -39,7 +39,7 @@ class DeterminantInverse:
             fracDet = 1/det
 
         try:
-            if len(mat[0]) == 2 and len(mat[1] == 2):
+            if len(mat[0]) == 2 and len(mat[1]) == 2:
                 #changes the places of matrix
                 tmp = mat[0][0]
                 mat[0][0] = mat[1][1]
@@ -59,10 +59,15 @@ class DeterminantInverse:
 
     def checkForNeg(self, x):
         newNum = 0
-        if x > 0: 
+        #print('before if {}'.format(x))
+        if x > 0:
+            #print('x is > 0 {}'.format(x)) 
             newNum = -x
-        elif x < 0:   
+            #print(newNum)
+        elif x < 0: 
+            #print('x is < 0 {}'.format(x))
             newNum = abs(x)
+            #print(newNum)
         return newNum
 
 #Class performs addition and subtraction on matrix's of equal height and length
@@ -201,19 +206,79 @@ if __name__ == '__main__':
     matrix3 = [[1, 6, 4, 5], [4, -4, 8, 6], [4, -4, 8, 7], [4, -4, 8, -9]]
     matrix4 = [[2, -6, 9, -4], [4, 5, -1, -3], [4, 5, -1, 7], [4, -2, 5, -1]]
 
+    #vector x vector cross product
     inverseVector1 = [1, -7, 1]
     inverseVector2 = [5, 2, 4]
+
     #Matrix of 4x4 and vector of 4 elements
     testMat4 = [[2, 6, -9, 1], [-1, 8, 3, 1], [-2, 4, 4, -2], [2, 5, -7, 1]]
     vect4 = [2, -9, -6, 1]
-    # print(DeterminantInverse(mat).calDeterminant(mat))
-    # print(DeterminantInverse(matInverse).inverseOfMatrix(matInverse))
-    # print(DeterminantInverse(mat2).inverseOfMatrix(mat2))
-    # print(AddOrSubMatrix(matrix3, matrix4).matrixAddOrSubtr(matrix3,matrix4,add))
-    # print(AddOrSubMatrix(matrix3, matrix4).matrixAddOrSubtr(matrix3,matrix4,sub))
-    # print(MatrixMulti(matrix3, matrix4).matriceMulti(matrix3, matrix4))
-    print(MatrixVectorMulti(testMat4, vect4).matriceXVector(testMat4,vect4))
-    print(CrossProduct(inverseVector1,
-                       inverseVector2).calculateCrossProduct(inverseVector1, inverseVector2))
-    
 
+    answerDeter = 8
+    answerInverse = [[1.5, -2.0], [-0.5, 1.0]]
+    answerMatVec = [5, -91, -66, 2]
+    answerCrossProd = [-30, 1, 37]
+    answerMatAdd = [[3, 0, 13, 1], [8, 1, 7, 3],
+                    [8, 1, 7, 14], [8, -6, 13, -10]]
+    answerMatSub = [[-1, 12, -5, 9], [0, -9, 9, 9],
+                    [0, -9, 9, 0], [0, -2, 3, -8]]
+    answerMatMulti = [[62, 34, 24, 1],
+                     [48, -16, 62, 46],
+                     [52, -18, 67, 45],
+                     [-12, 14, -13, 61]]
+
+    #print(DeterminantInverse(mat).calDeterminant(mat))
+    print(DeterminantInverse(matInverse).inverseOfMatrix(matInverse))
+
+    if answerDeter == DeterminantInverse(mat).calDeterminant(mat):
+        print('1). Determinant of {} = {} == True\n'.format(
+            mat, answerDeter))
+    else:
+        print('False')
+
+    #For some reason this returns false as we can see from the else its correct
+    #if someone can have a look that would be great
+    if answerInverse == DeterminantInverse(matInverse).inverseOfMatrix(matInverse):
+        print('2). \nInverse of {} = {}  == True\n'.format(
+            matInverse, answerInverse))
+    else:
+        print('2). == False')
+        print(answerInverse == DeterminantInverse(
+            matInverse).inverseOfMatrix(matInverse))
+
+    if answerInverse == DeterminantInverse(mat2).inverseOfMatrix(mat2):
+        print('3). \nInverse of {} = {}  == True\n'.format(
+            matInverse, answerInverse))
+    else:
+        print('3). == False\n')
+
+    if answerMatAdd == AddOrSubMatrix(matrix3, matrix4).matrixAddOrSubtr(matrix3, matrix4, add):
+        print('4). {} \n + {} \n= {}  == True\n'.format(
+            matrix3, matrix4, answerMatAdd))
+    else:
+        print('4). == False')
+
+    if answerMatSub == AddOrSubMatrix(matrix3, matrix4).matrixAddOrSubtr(matrix3, matrix4, sub):
+        print('5). {} \n - {} \n= {}  == True\n'.format(
+            matrix3, matrix4, answerMatSub))
+    else:
+        print('5). == False')
+
+    if answerMatMulti == MatrixMulti(matrix3, matrix4).matriceMulti(matrix3, matrix4):
+        print('6). {} \n X {} \n= {}  == True\n'.format(
+            matrix3, matrix4, answerMatSub))
+    else:
+        print('6). == False')
+
+    if answerMatVec == MatrixVectorMulti(testMat4, vect4).matriceXVector(testMat4, vect4):
+        print('7). {} \n X {} \n= {}  == True\n'.format(
+            testMat4, vect4, answerMatVec))
+    else:
+        print('7). == False')
+
+    if answerCrossProd == CrossProduct(inverseVector1,
+                       inverseVector2).calculateCrossProduct(inverseVector1, inverseVector2):
+        print('8). Cross Product of \n{} And {} = {}  == True\n'.format(
+            inverseVector1, inverseVector2, answerCrossProd))
+    else:
+        print('8). == False')
