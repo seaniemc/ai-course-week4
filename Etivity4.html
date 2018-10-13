@@ -11776,13 +11776,21 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Student-Name:-Sean-McGrath">Student Name: Sean McGrath<a class="anchor-link" href="#Student-Name:-Sean-McGrath">&#182;</a></h3><h3 id="Student-ID:-18208088">Student ID: 18208088<a class="anchor-link" href="#Student-ID:-18208088">&#182;</a></h3><h3 id="Problem-Description:">Problem Description:<a class="anchor-link" href="#Problem-Description:">&#182;</a></h3><p>Use Python classes and functions to perform arithmetic operations on tensors of varying height and length.</p>
+<ul>
+<li>Calculate the determinant and inverse of a 2x2 matrix.</li>
+<li>Calculate addition and subtraction of 4x4 matrix.</li>
+<li>Calculate multiplication of a 4x4 matrix.</li>
+<li>Calculate the dot product of 4x4 Matrix and a vector of 1x4.</li>
+<li>Calculate the cross product of 2 1x3 vectors. </li>
+</ul>
+<p>Classes and functions have been built and tested against right and wrong inputs, exception handling has been applied where I perceived necessary. Please feel free to test.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="k">import</span> <span class="n">add</span>
@@ -11797,23 +11805,17 @@ div#notebook {
         <span class="bp">self</span><span class="o">.</span><span class="n">mat</span> <span class="o">=</span> <span class="n">mat</span>
 
     <span class="c1">#function calculates the determinant of a 2x2 matrix</span>
-    <span class="k">def</span> <span class="nf">calDeterminant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
-        <span class="n">deter</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">try</span><span class="p">:</span> 
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">Exception</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">INFO - INPUT MISMATCH: Matrix must be of size 2x2 to calculate determinant&#39;</span><span class="p">)</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1">#calculates determinant</span>
-            <span class="n">deter</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">deter</span>
+    <span class="k">def</span> <span class="nf">cal_determinant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
+        <span class="c1">#implementation from rick suggestion  in the forums</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matrix must be of size 2x2 to calculate determinant.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1">#function calculates the inverse of a 2x2 matrix</span>
-    <span class="k">def</span> <span class="nf">inverseOfMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inverse_of_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
         <span class="c1">#get the determinant of mat</span>
-        <span class="n">det</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calDeterminant</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">det</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cal_determinant</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
         <span class="n">fracDet</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="c1">#create a 2x2 matrix containing 0</span>
         <span class="n">inverseMat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
@@ -11825,26 +11827,25 @@ div#notebook {
             <span class="c1">#divide by 1</span>
             <span class="n">fracDet</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">det</span>
 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="c1">#changes the places of matrix</span>
-                <span class="n">tmp</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
-                <span class="c1">#changes from positive to negative and vice versa</span>
-                <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkForNeg</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkForNeg</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-                
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
-                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
-                        <span class="n">inverseMat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fracDet</span> <span class="o">*</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1">#changes the places of matrix</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+            <span class="c1">#changes from positive to negative and vice versa</span>
+            <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_for_neg</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_for_neg</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+                    <span class="n">inverseMat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fracDet</span> <span class="o">*</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            
+            <span class="k">return</span> <span class="n">inverseMat</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span>
                 <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">INFO - INPUT MISMATCH: Inverse can only be calculated on a 2X2 matrix&#39;</span><span class="p">)</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">inverseMat</span>
 
-    <span class="k">def</span> <span class="nf">checkForNeg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check_for_neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">newNum</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="c1">#print(&#39;before if {}&#39;.format(x))</span>
         <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -11864,7 +11865,7 @@ div#notebook {
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix2</span> <span class="o">=</span> <span class="n">matrix2</span>
     
     <span class="c1"># function which adds or subtracts matrix</span>
-    <span class="k">def</span> <span class="nf">matrixAddOrSubtr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix1</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">,</span> <span class="n">mathSign</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">matrix_add_subtr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix1</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">,</span> <span class="n">mathSign</span><span class="p">):</span>
         <span class="c1">#create a array containing only zero, which is the</span>
         <span class="c1"># height of mat1 and length of mat2</span>
         <span class="n">sumAns</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix2</span><span class="p">))]</span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">))]</span>
@@ -11894,7 +11895,7 @@ div#notebook {
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix2</span> <span class="o">=</span> <span class="n">matrix2</span>
     
     <span class="c1">#function which multiplies matrix&#39;s</span>
-    <span class="k">def</span> <span class="nf">matriceMulti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat1</span><span class="p">,</span> <span class="n">mat2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">matrice_multi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat1</span><span class="p">,</span> <span class="n">mat2</span><span class="p">):</span>
         <span class="n">mat1Row</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat1</span><span class="p">)</span>
         <span class="n">mat1Columns</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">mat2Rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span>
@@ -11921,63 +11922,30 @@ div#notebook {
         <span class="bp">self</span><span class="o">.</span><span class="n">vector</span> <span class="o">=</span> <span class="n">vector</span>
 
     <span class="c1">#function multiplies matrix and a vector</span>
-    <span class="k">def</span> <span class="nf">matriceXVector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">,</span> <span class="n">vect</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">matrice_x_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">,</span> <span class="n">vect</span><span class="p">):</span>
         <span class="n">matLen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
         <span class="n">vetLen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vect</span><span class="p">)</span>
-        <span class="c1">#list gets populated with multiplication values</span>
-        <span class="n">multiAns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1">#list gets populated with sum of multiplication values</span>
-        <span class="n">sumAns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1">#print(len(mat[0]) == len(vect))</span>
+    
+        <span class="n">sumAns</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vetLen</span><span class="p">)]]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">vetLen</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">matLen</span><span class="p">):</span>
                     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vetLen</span><span class="p">):</span>
-                        <span class="n">multiAns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">vect</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-
-                <span class="n">sumAns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sumOfVectorMulti</span><span class="p">(</span><span class="n">multiAns</span><span class="p">)</span>
+                        <span class="c1">#remodeled this calculation based pn Declan </span>
+                        <span class="c1">#Staunton&#39;s code.</span>
+                        <span class="n">sumAns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">vect</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span>
                 <span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> INFO: Columns of the matrix must be same length as the rows of the vector&#39;</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">sumAns</span>
 
-    <span class="c1">#Helper function which performs addition of the multiplied</span>
-    <span class="c1"># vector/matrix multiplication.</span>
-    <span class="k">def</span> <span class="nf">sumOfVectorMulti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiAns</span><span class="p">):</span>
-        <span class="n">sumAns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">multiAns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-                <span class="n">sumAns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcuList</span><span class="p">(</span><span class="n">multiAns</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">multiAns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-                <span class="n">sumAns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcuList</span><span class="p">(</span><span class="n">multiAns</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">multiAns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">16</span><span class="p">:</span>
-                <span class="n">sumAns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcuList</span><span class="p">(</span><span class="n">multiAns</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> INFO: Input mismatch, function can only operate on &#39;</span>
-                <span class="o">+</span> <span class="s1">&#39;tensors with elements of length 2, 3 or 4. Please check your Matrix input length &#39;</span><span class="p">)</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">sumAns</span>
-
-    <span class="c1">#helper function which splits the list</span>
-    <span class="c1">#into smaller section of 2/3/4 elements and then sums each</span>
-    <span class="c1">#individual list</span>
-    <span class="k">def</span> <span class="nf">calcuList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiAns</span><span class="p">,</span> <span class="n">increment</span><span class="p">):</span>
-        <span class="n">sumAns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1">#split multiAns list in to smaller lists based of increment passed in e.g 2/3/4</span>
-        <span class="n">composite_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">multiAns</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">increment</span><span class="p">]</span>
-                        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">multiAns</span><span class="p">),</span> <span class="n">increment</span><span class="p">)]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">composite_list</span><span class="p">:</span>
-            <span class="c1">#sum each list and add to sumAns list</span>
-            <span class="n">sumAns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">sumAns</span>
-
 <span class="k">class</span> <span class="nc">CrossProduct</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector1</span><span class="p">,</span> <span class="n">vector2</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vector1</span> <span class="o">=</span> <span class="n">vector1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vector2</span> <span class="o">=</span> <span class="n">vector2</span>
 
-    <span class="k">def</span> <span class="nf">calculateCrossProduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector1</span><span class="p">,</span> <span class="n">vector2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate_cross_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector1</span><span class="p">,</span> <span class="n">vector2</span><span class="p">):</span>
         <span class="n">ansVector</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">ansVector</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vector1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">vector2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">vector1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">vector2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">ansVector</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vector1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">vector2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">vector1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">vector2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -12003,7 +11971,7 @@ div#notebook {
 
     <span class="n">answerDeter</span> <span class="o">=</span> <span class="mi">8</span>
     <span class="n">answerInverse</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]</span>
-    <span class="n">answerMatVec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">91</span><span class="p">,</span> <span class="o">-</span><span class="mi">66</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">answerMatVec</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">91</span><span class="p">,</span> <span class="o">-</span><span class="mi">66</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
     <span class="n">answerCrossProd</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
     <span class="n">answerMatAdd</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">]]</span>
@@ -12014,7 +11982,7 @@ div#notebook {
                      <span class="p">[</span><span class="mi">52</span><span class="p">,</span> <span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
                      <span class="p">[</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="o">-</span><span class="mi">13</span><span class="p">,</span> <span class="mi">61</span><span class="p">]]</span>
 
-    <span class="k">if</span> <span class="n">answerDeter</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="o">.</span><span class="n">calDeterminant</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerDeter</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="o">.</span><span class="n">cal_determinant</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1). Determinant of </span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1"> == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">mat</span><span class="p">,</span> <span class="n">answerDeter</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
@@ -12022,46 +11990,50 @@ div#notebook {
 
     <span class="c1">#For some reason this test returns false as we can see from the else its correct</span>
     <span class="c1">#if someone can have a look that would be great</span>
-    <span class="k">if</span> <span class="n">answerInverse</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span><span class="n">matInverse</span><span class="p">)</span><span class="o">.</span><span class="n">inverseOfMatrix</span><span class="p">(</span><span class="n">matInverse</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerInverse</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span><span class="n">matInverse</span><span class="p">)</span><span class="o">.</span><span class="n">inverse_of_matrix</span><span class="p">(</span><span class="n">matInverse</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2). </span><span class="se">\n</span><span class="s1">Inverse of </span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">matInverse</span><span class="p">,</span> <span class="n">answerInverse</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2). == False&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">answerInverse</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span>
-            <span class="n">matInverse</span><span class="p">)</span><span class="o">.</span><span class="n">inverseOfMatrix</span><span class="p">(</span><span class="n">matInverse</span><span class="p">))</span>
+            <span class="n">matInverse</span><span class="p">)</span><span class="o">.</span><span class="n">inverse_of_matrix</span><span class="p">(</span><span class="n">matInverse</span><span class="p">))</span>
 
-    <span class="k">if</span> <span class="n">answerInverse</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span><span class="o">.</span><span class="n">inverseOfMatrix</span><span class="p">(</span><span class="n">mat2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerInverse</span> <span class="o">==</span> <span class="n">DeterminantInverse</span><span class="p">(</span><span class="n">mat2</span><span class="p">)</span><span class="o">.</span><span class="n">inverse_of_matrix</span><span class="p">(</span><span class="n">mat2</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3). </span><span class="se">\n</span><span class="s1">Inverse of </span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">matInverse</span><span class="p">,</span> <span class="n">answerInverse</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3). == False</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">answerMatAdd</span> <span class="o">==</span> <span class="n">AddOrSubMatrix</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">)</span><span class="o">.</span><span class="n">matrixAddOrSubtr</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">add</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerMatAdd</span> <span class="o">==</span> <span class="n">AddOrSubMatrix</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">)</span><span class="o">.</span><span class="n">matrix_add_subtr</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">add</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> =========== 4x4 Matrix addition ============&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;4). </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> + </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">= </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">answerMatAdd</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;4). == False&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">answerMatSub</span> <span class="o">==</span> <span class="n">AddOrSubMatrix</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">)</span><span class="o">.</span><span class="n">matrixAddOrSubtr</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">sub</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerMatSub</span> <span class="o">==</span> <span class="n">AddOrSubMatrix</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">)</span><span class="o">.</span><span class="n">matrix_add_subtr</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">sub</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> =========== 4x4 Matrix substraction ============&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;5). </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> - </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">= </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">answerMatSub</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;5). == False&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">answerMatMulti</span> <span class="o">==</span> <span class="n">MatrixMulti</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">)</span><span class="o">.</span><span class="n">matriceMulti</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerMatMulti</span> <span class="o">==</span> <span class="n">MatrixMulti</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">)</span><span class="o">.</span><span class="n">matrice_multi</span><span class="p">(</span><span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> =========== 4x4 Matrix multiplication ============&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;6). </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> X </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">= </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">matrix3</span><span class="p">,</span> <span class="n">matrix4</span><span class="p">,</span> <span class="n">answerMatSub</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;6). == False&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">answerMatVec</span> <span class="o">==</span> <span class="n">MatrixVectorMulti</span><span class="p">(</span><span class="n">testMat4</span><span class="p">,</span> <span class="n">vect4</span><span class="p">)</span><span class="o">.</span><span class="n">matriceXVector</span><span class="p">(</span><span class="n">testMat4</span><span class="p">,</span> <span class="n">vect4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">answerMatVec</span> <span class="o">==</span> <span class="n">MatrixVectorMulti</span><span class="p">(</span><span class="n">testMat4</span><span class="p">,</span> <span class="n">vect4</span><span class="p">)</span><span class="o">.</span><span class="n">matrice_x_vector</span><span class="p">(</span><span class="n">testMat4</span><span class="p">,</span> <span class="n">vect4</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> ====== 4x4 Matrix multiply 1x4 Vector ============&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;7). </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> X </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">= </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">testMat4</span><span class="p">,</span> <span class="n">vect4</span><span class="p">,</span> <span class="n">answerMatVec</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;7). == False&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">answerCrossProd</span> <span class="o">==</span> <span class="n">CrossProduct</span><span class="p">(</span><span class="n">inverseVector1</span><span class="p">,</span>
-                       <span class="n">inverseVector2</span><span class="p">)</span><span class="o">.</span><span class="n">calculateCrossProduct</span><span class="p">(</span><span class="n">inverseVector1</span><span class="p">,</span> <span class="n">inverseVector2</span><span class="p">):</span>
+                       <span class="n">inverseVector2</span><span class="p">)</span><span class="o">.</span><span class="n">calculate_cross_product</span><span class="p">(</span><span class="n">inverseVector1</span><span class="p">,</span> <span class="n">inverseVector2</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;8). Cross Product of </span><span class="se">\n</span><span class="si">{}</span><span class="s1"> And </span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">  == True</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">inverseVector1</span><span class="p">,</span> <span class="n">inverseVector2</span><span class="p">,</span> <span class="n">answerCrossProd</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
@@ -12088,24 +12060,32 @@ div#notebook {
 Inverse of [[3, -4], [-1, 2]] = [[1.5, -2.0], [-0.5, 1.0]]  == True
 
 
-INFO - INPUT MISMATCH: Matrix must be of size 2x2 to calculate determinant
+INFO - INPUT MISMATCH: Inverse can only be calculated on a 2X2 matrix
 3). == False
 
+
+ =========== 4x4 Matrix addition ============
 4). [[1, 6, 4, 5], [4, -4, 8, 6], [4, -4, 8, 7], [4, -4, 8, -9]] 
  + [[2, -6, 9, -4], [4, 5, -1, -3], [4, 5, -1, 7], [4, -2, 5, -1]] 
 = [[3, 0, 13, 1], [8, 1, 7, 3], [8, 1, 7, 14], [8, -6, 13, -10]]  == True
 
+
+ =========== 4x4 Matrix substraction ============
 5). [[1, 6, 4, 5], [4, -4, 8, 6], [4, -4, 8, 7], [4, -4, 8, -9]] 
  - [[2, -6, 9, -4], [4, 5, -1, -3], [4, 5, -1, 7], [4, -2, 5, -1]] 
 = [[-1, 12, -5, 9], [0, -9, 9, 9], [0, -9, 9, 0], [0, -2, 3, -8]]  == True
 
+
+ =========== 4x4 Matrix multiplication ============
 6). [[1, 6, 4, 5], [4, -4, 8, 6], [4, -4, 8, 7], [4, -4, 8, -9]] 
  X [[2, -6, 9, -4], [4, 5, -1, -3], [4, 5, -1, 7], [4, -2, 5, -1]] 
 = [[-1, 12, -5, 9], [0, -9, 9, 9], [0, -9, 9, 0], [0, -2, 3, -8]]  == True
 
+
+ ====== 4x4 Matrix multiply 1x4 Vector ============
 7). [[2, 6, -9, 1], [-1, 8, 3, 1], [-2, 4, 4, -2], [2, 5, -7, 1]] 
  X [2, -9, -6, 1] 
-= [5, -91, -66, 2]  == True
+= [[5, -91, -66, 2]]  == True
 
 8). Cross Product of 
 [1, -7, 1] And [5, 2, 4] = [-30, 1, 37]  == True
