@@ -2,8 +2,8 @@ from operator import add
 from operator import sub
 #Tried to implement SRP "Single Responsibility Principal" for all classes in this module
 
-#Class DeterminantInverse is used to calculate the 
-#determinant and inverse of a 2x2 matrix
+#Class DeterminantInverse is used to calculate 
+#the determinant and inverse of a 2x2 matrix
 class DeterminantInverse:
     #constructor function
     def __init__(self, mat):
